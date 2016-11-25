@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QListWidget, \
                             QTextEdit, QApplication
 import sys
 from PyQt5.QtMultimedia import QSound
+from PyQt5.QtGui import QFont
 from socket import socket
 import threading
 import pickle
@@ -71,21 +72,24 @@ class Main(QWidget):
         sender = self.sender()
         self.name = self.nameline.text()
         password = self.passwordline.text()
-        self.password = hashlib.md5(password.encode('utf-8')).hexdigest()
-        if self.trycount == 0:
-            self.socket = socket()
-            self.socket.connect(('127.0.0.1', 9091))
-            self.trycount += 1
-        sendlist = [sender.text(), self.name, self.password]
-        req = pickle.dumps(sendlist)
-        self.socket.send(req)
-        response = self.socket.recv(1024)
-        response = pickle.loads(response)
-        if response == 'okay':
-            self.startserver()
-            threading.Thread(target=self.accept).start()
+        if self.name == "" and password == "":
+            self.status.setText('Type something')
         else:
-            self.status.setText('Incorrect login or password')
+            self.password = hashlib.md5(password.encode('utf-8')).hexdigest()
+            if self.trycount == 0:
+                self.socket = socket()
+                self.socket.connect(('192.168.0.104', 9091))
+                self.trycount += 1
+            sendlist = [sender.text(), self.name, self.password]
+            req = pickle.dumps(sendlist)
+            self.socket.send(req)
+            response = self.socket.recv(1024)
+            response = pickle.loads(response)
+            if response == 'okay':
+                self.startserver()
+                threading.Thread(target=self.accept).start()
+            else:
+                self.status.setText('Incorrect login or password')
 
     def startserver(self):
         self.setGeometry(300, 150, 300, 450)
@@ -104,7 +108,7 @@ class Main(QWidget):
         self.lay.addWidget(self.send)
 
     def typeracer(self):
-        self.setGeometry(300, 150, 300, 450)
+        self.setGeometry(300, 150, 400, 650)
         if hasattr(self, 'lay'):
             clearLayout(self.lay)
         else:
@@ -116,9 +120,14 @@ class Main(QWidget):
         self.mainlist = list(self.typing)
         self.words = len(list(self.typing.split()))
         self.textline = QTextEdit()
-        self.textline.setText(self.typing)
+        self.textline.setText("<font color='blue' size=8>{}</font>"
+                              .format(self.typing))
         self.textline.setReadOnly(True)
         self.editline = QLineEdit()
+        self.editline.setFixedSize(400, 70)
+        font = self.editline.font()
+        font.setPointSize(18)
+        self.editline.setFont(font)
         self.editline.textChanged.connect(self.sec)
         self.stopbtn = QPushButton('Stop the game')
         self.stopbtn.clicked.connect(self.result)
@@ -135,7 +144,8 @@ class Main(QWidget):
                 self.counter += 1
                 typed = self.typing[:self.counter]
                 future = self.typing[self.counter:]
-                text = "<font color='blue'>{}</font>{}".format(typed, future)
+                text = '''<font color='blue' size=8>{}</font>
+                          <font size=8>{}</font>'''.format(typed, future)
                 self.textline.setText(text)
                 if self.mainlist[0] == ' ':
                     self.editline.setText('')

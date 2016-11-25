@@ -207,7 +207,7 @@ class Main(QWidget):
         self.setLayout(self.lay)
         self.show()
         self.socket = socket()
-        self.socket.bind(('127.0.0.1', 9091))
+        self.socket.bind(('192.168.0.104', 9091))
         self.socket.listen(5)
         Thread(target=self.acceptclients).start()
         Thread(target=self.activeusers).start()
@@ -321,12 +321,15 @@ class Main(QWidget):
                     else:
                         conn.send(pickle.dumps('Incorrect'))
                 else:
-                    database.insertuser(req[1], req[2])
-                    conn.send(pickle.dumps('okay'))
-                    self.conns[req[1]] = conn
-                    c = Thread(target=self.acceptmes, args=(conn, req[1]))
-                    c.start()
-                    break
+                    if req[1] == "" and req[2] == "":
+                        conn.send(pickle.dumps('Incorrect'))
+                    else:
+                        database.insertuser(req[1], req[2])
+                        conn.send(pickle.dumps('okay'))
+                        self.conns[req[1]] = conn
+                        c = Thread(target=self.acceptmes, args=(conn, req[1]))
+                        c.start()
+                        break
             except:
                 break
 

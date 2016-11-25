@@ -1,5 +1,3 @@
-## Hello World
-
 import sqlite3
 SELECT = "SELECT name, password FROM users WHERE name = ?"
 INSERT = "INSERT INTO users (name, password) VALUES (?, ?)"
