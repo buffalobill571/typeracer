@@ -78,7 +78,7 @@ class Main(QWidget):
             self.password = hashlib.md5(password.encode('utf-8')).hexdigest()
             if self.trycount == 0:
                 self.socket = socket()
-                self.socket.connect(('192.168.0.104', 9091))
+                self.socket.connect(('0.0.0.0', 9090))
                 self.trycount += 1
             sendlist = [sender.text(), self.name, self.password]
             req = pickle.dumps(sendlist)

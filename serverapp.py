@@ -207,7 +207,7 @@ class Main(QWidget):
         self.setLayout(self.lay)
         self.show()
         self.socket = socket()
-        self.socket.bind(('192.168.0.104', 9091))
+        self.socket.bind(('0.0.0.0', 9090))
         self.socket.listen(5)
         Thread(target=self.acceptclients).start()
         Thread(target=self.activeusers).start()
