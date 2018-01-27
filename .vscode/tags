@@ -1,0 +1,96 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALL	../database.py	/^ALL = "SELECT * FROM users"$/;"	kind:variable	line:6
+INSERT	../database.py	/^INSERT = "INSERT INTO users (name, password) VALUES (?, ?)"$/;"	kind:variable	line:5
+Main	../clientapp.py	/^class Main(QWidget):$/;"	kind:class	line:47
+Main	../serverapp.py	/^class Main(QWidget):$/;"	kind:class	line:180
+NAME	../database.py	/^NAME = "SELECT name FROM users"$/;"	kind:variable	line:7
+SERVER_ADDRESS	../clientapp.py	/^SERVER_ADDRESS = get_current_ip()$/;"	kind:variable	line:31
+ShowCurrentIP	../serverapp.py	/^class ShowCurrentIP(QWidget):$/;"	kind:class	line:119
+Textmanage	../serverapp.py	/^class Textmanage(QWidget):$/;"	kind:class	line:142
+User	../serverapp.py	/^class User(QWidget):$/;"	kind:class	line:43
+__init__	../clientapp.py	/^    def __init__(self):$/;"	kind:member	line:65
+__init__	../serverapp.py	/^    def __init__(self):$/;"	kind:member	line:190
+__init__	../serverapp.py	/^    def __init__(self):$/;"	kind:member	line:46
+__init__	../serverapp.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:121
+__init__	../serverapp.py	/^    def __init__(self, parent=None):$/;"	kind:member	line:144
+accept	../clientapp.py	/^    def accept(self):$/;"	kind:member	line:249
+accept_broadcast	../clientapp.py	/^def accept_broadcast():$/;"	kind:function	line:34
+acceptclients	../serverapp.py	/^    def acceptclients(self):$/;"	kind:member	line:338
+acceptmes	../serverapp.py	/^    def acceptmes(self, conn, name):$/;"	kind:member	line:401
+activeusers	../serverapp.py	/^    def activeusers(self):$/;"	kind:member	line:328
+adduser	../serverapp.py	/^    def adduser(self):$/;"	kind:member	line:102
+app	../clientapp.py	/^    app = QApplication(sys.argv)$/;"	kind:variable	line:309
+app	../serverapp.py	/^    app = QApplication(sys.argv)$/;"	kind:variable	line:435
+authentification	../clientapp.py	/^    def authentification(self):$/;"	kind:member	line:111
+before	../clientapp.py	/^    before = ''$/;"	kind:variable	line:63
+broadcast	../serverapp.py	/^def broadcast():$/;"	kind:function	line:26
+checktext	../serverapp.py	/^    def checktext(self):$/;"	kind:member	line:315
+clearLayout	../clientapp.py	/^def clearLayout(layout):$/;"	kind:function	line:16
+clearLayout	../serverapp.py	/^def clearLayout(layout):$/;"	kind:function	line:17
+clientapp.py	../clientapp.py	1;"	kind:file	line:1
+clientresult	../serverapp.py	/^    clientresult = []$/;"	kind:variable	line:183
+closeEvent	../clientapp.py	/^    def closeEvent(self, event):$/;"	kind:member	line:303
+closeEvent	../serverapp.py	/^    def closeEvent(self, event):$/;"	kind:member	line:430
+conns	../serverapp.py	/^    conns = {}$/;"	kind:variable	line:186
+count	../clientapp.py	/^    count = 0$/;"	kind:variable	line:57
+count	../serverapp.py	/^    count = 0$/;"	kind:variable	line:188
+counter	../clientapp.py	/^    counter = 0$/;"	kind:variable	line:58
+countlength	../clientapp.py	/^    countlength = 0$/;"	kind:variable	line:48
+database.py	../database.py	1;"	kind:file	line:1
+delete	../serverapp.py	/^    def delete(self):$/;"	kind:member	line:96
+deletebyname	../database.py	/^def deletebyname(name):$/;"	kind:function	line:42
+displayall	../clientapp.py	/^    def displayall(self):$/;"	kind:member	line:280
+error	../clientapp.py	/^    error = 'errorsound.mp3'$/;"	kind:variable	line:52
+errorcount	../clientapp.py	/^    errorcount = 0$/;"	kind:variable	line:59
+ex	../clientapp.py	/^    ex = Main()$/;"	kind:variable	line:310
+ex	../serverapp.py	/^    ex = Main()$/;"	kind:variable	line:436
+first	../serverapp.py	/^    first = 0$/;"	kind:variable	line:182
+first	../serverapp.py	/^    first = 1$/;"	kind:variable	line:44
+forcest	../serverapp.py	/^    forcest = False$/;"	kind:variable	line:181
+forcestopping	../serverapp.py	/^    def forcestopping(self):$/;"	kind:member	line:259
+get_current_ip	../clientapp.py	/^def get_current_ip():$/;"	kind:function	line:25
+get_current_ip	../serverapp.py	/^    def get_current_ip(self):$/;"	kind:member	line:136
+get_current_ip	../serverapp.py	/^def get_current_ip():$/;"	kind:function	line:37
+identifyclient	../serverapp.py	/^    def identifyclient(self, conn):$/;"	kind:member	line:348
+initUI	../clientapp.py	/^    def initUI(self):$/;"	kind:member	line:72
+initUI	../serverapp.py	/^    def initUI(self):$/;"	kind:member	line:125
+initUI	../serverapp.py	/^    def initUI(self):$/;"	kind:member	line:148
+initUI	../serverapp.py	/^    def initUI(self):$/;"	kind:member	line:50
+insertuser	../database.py	/^def insertuser(name, password):$/;"	kind:function	line:25
+length	../clientapp.py	/^    length = 0$/;"	kind:variable	line:55
+manage	../serverapp.py	/^    def manage(self):$/;"	kind:member	line:163
+name	../clientapp.py	/^    name = None$/;"	kind:variable	line:60
+password	../clientapp.py	/^    password = None$/;"	kind:variable	line:61
+random	../serverapp.py	/^    def random(self):$/;"	kind:member	line:301
+refreshfiles	../serverapp.py	/^    def refreshfiles(self):$/;"	kind:member	line:321
+refreshusers	../serverapp.py	/^    def refreshusers(self):$/;"	kind:member	line:89
+reftext	../serverapp.py	/^    def reftext(self):$/;"	kind:member	line:263
+result	../clientapp.py	/^    def result(self):$/;"	kind:member	line:208
+running	../clientapp.py	/^    running = True$/;"	kind:variable	line:54
+running	../serverapp.py	/^    running = True$/;"	kind:variable	line:185
+sec	../clientapp.py	/^    def sec(self):$/;"	kind:member	line:182
+selectall	../database.py	/^def selectall():$/;"	kind:function	line:33
+selectbyname	../database.py	/^def selectbyname(name, password):$/;"	kind:function	line:11
+selectnot	../serverapp.py	/^    def selectnot(self):$/;"	kind:member	line:288
+sendmessage	../clientapp.py	/^    def sendmessage(self):$/;"	kind:member	line:242
+sendmessage	../serverapp.py	/^    def sendmessage(self):$/;"	kind:member	line:378
+sendstop	../serverapp.py	/^    def sendstop(self):$/;"	kind:member	line:391
+sendstopping	../serverapp.py	/^    def sendstopping(self):$/;"	kind:member	line:386
+sendtext	../serverapp.py	/^    sendtext = {}$/;"	kind:variable	line:184
+serverapp.py	../serverapp.py	1;"	kind:file	line:1
+startserver	../clientapp.py	/^    def startserver(self):$/;"	kind:member	line:136
+startserver	../serverapp.py	/^    def startserver(self):$/;"	kind:member	line:194
+statistic	../serverapp.py	/^    def statistic(self):$/;"	kind:member	line:268
+success	../clientapp.py	/^    success = 'success.wav'$/;"	kind:variable	line:53
+threads	../clientapp.py	/^    threads = []$/;"	kind:variable	line:56
+threads	../serverapp.py	/^    threads = []$/;"	kind:variable	line:187
+trycount	../clientapp.py	/^    trycount = 0$/;"	kind:variable	line:62
+typeracer	../clientapp.py	/^    def typeracer(self):$/;"	kind:member	line:152
+typeracermode	../clientapp.py	/^    typeracermode = False$/;"	kind:variable	line:51
+typing	../clientapp.py	/^    typing = ''$/;"	kind:variable	line:50
+wordslist	../clientapp.py	/^    wordslist = []$/;"	kind:variable	line:49

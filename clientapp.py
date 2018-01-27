@@ -1,9 +1,10 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QListWidget, \
                             QPushButton, QLabel, QLineEdit, QListWidgetItem, \
-                            QTextEdit, QApplication
+                            QTextEdit, QApplication, QHBoxLayout
 import sys
 from PyQt5.QtMultimedia import QSound
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QPalette, QBrush, QPixmap
+from PyQt5.QtCore import Qt
 from socket import socket
 import threading
 import pickle
@@ -70,27 +71,63 @@ class Main(QWidget):
         self.initUI()
 
     def initUI(self):
+        self.label = QLabel(self)
+        pixmap = QPixmap('logo.png')
+        pixmap = pixmap.scaledToWidth(200)
+        self.label.setPixmap(pixmap)
         self.lay = QVBoxLayout()
-        self.setLayout(self.lay)
+        self.label.setAlignment(Qt.AlignCenter)
+        self.hor = QHBoxLayout()
+        # self.lay.setContentsMargins(-1,-1,-1,0)
+        
+        self.Hbox = QHBoxLayout()
+        # self.Hbox.addStretch(1)
+        
+        # self.hor.setAlignment(Qt.AlignCenter)
+        # self.lay.addLayout(self.hor)
+        self.setStyleSheet('QWidget {background-color:white;border:none}')
+        # self.label.setStyleSheet('Q {width:50px;height:auto}')
+        
+        self.height = 60 
         self.trycount = 0
-        self.setGeometry(300, 150, 300, 150)
+        self.setGeometry(300, 150, 400, 600)
         self.nameline = QLineEdit()
         self.passwordline = QLineEdit()
+        self.nameline.setPlaceholderText("Username...")
+        self.passwordline.setPlaceholderText("Password...")
+
         self.passwordline.setEchoMode(QLineEdit.Password)
+        self.nameline.setStyleSheet('QLineEdit {background-color:#EEE;height:40;border-radius:3px;font-family:Arial;padding:6px}')
+        self.passwordline.setStyleSheet('QLineEdit {background-color:#EEE;height:40;border-radius:3px;font-family:Arial;padding:6px;}')
         self.status = QLabel()
         self.status.setStyleSheet("color:red")
+        self.lay.addStretch(1)
+        self.lay.addWidget(self.label)
+        self.lay.addStretch(1)
+        
         self.lay.addWidget(self.nameline)
         self.lay.addWidget(self.passwordline)
-        self.lay.addWidget(self.status)
+        # self.lay.addWidget(self.status)
+        self.lay.setAlignment(self.nameline, Qt.AlignBottom)
+        
+        self.lay.addLayout(self.Hbox)
+        # self.lay.addStretch(1)
+        
+        
         self.signin = QPushButton('Sign in')
         self.signup = QPushButton('Sign up')
+        self.signin.setStyleSheet('QPushButton {background-color:#4990E2;color:white;height:50;font-size:20px;border-radius:3px;font-family:Arial;}')
+        self.signup.setStyleSheet('QPushButton {background-color:#7FDC89;color:white;height:50;font-size:20px;border-radius:3px;font-family:Arial;}')
+        
         self.signin.clicked.connect(self.authentification)
         self.signup.clicked.connect(self.authentification)
-        self.lay.addWidget(self.signin)
-        self.lay.addWidget(self.signup)
+        self.Hbox.addWidget(self.signin)
+        self.Hbox.addWidget(self.signup)
+        self.setLayout(self.lay)
         self.show()
 
     def authentification(self):
+        
         sender = self.sender()
         self.name = self.nameline.text()
         password = self.passwordline.text()
