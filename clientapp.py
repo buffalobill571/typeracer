@@ -37,6 +37,7 @@ def accept_broadcast():
     try:
         s.bind(('', 12345))
         m = s.recvfrom(1024)
+        print(m)
         global SERVER_ADDRESS
         SERVER_ADDRESS = m[1][0]
     except:
