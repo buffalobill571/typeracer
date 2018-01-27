@@ -22,6 +22,27 @@ def clearLayout(layout):
             clearLayout(child.layout())
 
 
+def get_current_ip():
+        import socket
+        ip = (([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")] or [[(s.connect(("8.8.8.8", 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) + ["no IP found"])[0]
+        return ip
+
+
+SERVER_ADDRESS = get_current_ip()
+
+
+def accept_broadcast():
+    import socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        s.bind(('', 12345))
+        m = s.recvfrom(1024)
+        global SERVER_ADDRESS
+        SERVER_ADDRESS = m[1][0]
+    except:
+        pass
+
+
 class Main(QWidget):
     countlength = 0
     wordslist = []
@@ -78,7 +99,8 @@ class Main(QWidget):
             self.password = hashlib.md5(password.encode('utf-8')).hexdigest()
             if self.trycount == 0:
                 self.socket = socket()
-                self.socket.connect(('0.0.0.0', 9090))
+                global SERVER_ADDRESS
+                self.socket.connect((SERVER_ADDRESS, 9090))
                 self.trycount += 1
             sendlist = [sender.text(), self.name, self.password]
             req = pickle.dumps(sendlist)
@@ -263,6 +285,7 @@ class Main(QWidget):
 
 
 if __name__ == '__main__':
+    threading.Thread(target=accept_broadcast).start()
     app = QApplication(sys.argv)
     ex = Main()
     sys.exit(app.exec_())

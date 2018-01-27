@@ -23,6 +23,23 @@ def clearLayout(layout):
             clearLayout(child.layout())
 
 
+def broadcast():
+    import socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+
+    while True:
+        s.sendto('this is testing'.encode('utf-8'),('255.255.255.255',12345))
+        import time
+        time.sleep(1)
+
+
+def get_current_ip():
+        import socket
+        ip = (([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")] or [[(s.connect(("8.8.8.8", 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) + ["no IP found"])[0]
+        return ip
+
+
 class User(QWidget):
     first = 1
 
@@ -98,6 +115,30 @@ class User(QWidget):
             self.addstatus.setText("<font color='red'>Check password</font>")
 
 
+
+class ShowCurrentIP(QWidget):
+
+    def __init__(self, parent=None):
+        super(QWidget, self).__init__(parent)
+        self.initUI()
+    
+    def initUI(self):
+        box_layout = QVBoxLayout()
+        self.ip_label = QLabel('')
+        show_ip = QPushButton('Show IP')
+
+        box_layout.addWidget(self.ip_label)
+        box_layout.addWidget(show_ip)
+        self.setLayout(box_layout)
+
+        show_ip.clicked.connect(self.get_current_ip)
+    
+    def get_current_ip(self):
+        import socket
+        ip = (([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")] or [[(s.connect(("8.8.8.8", 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) + ["no IP found"])[0]
+        self.ip_label.setText(ip)
+
+
 class Textmanage(QWidget):
 
     def __init__(self, parent=None):
@@ -132,7 +173,7 @@ class Textmanage(QWidget):
             self.titletext.setText('')
             self.filetext.setText('')
         else:
-            textstatus = "<font color='red'>Enter title and text</font"
+            textstatus = "<font color='red'>Enter title and text</font>"
             self.textstatus.setText(textstatus)
 
 
@@ -195,6 +236,7 @@ class Main(QWidget):
         self.chatlay.addWidget(self.send)
         chat.setLayout(self.chatlay)
         tabwidget.addTab(chat, 'Chat')
+        tabwidget.addTab(ShowCurrentIP(), 'Show IP')
         tabwidget.addTab(Textmanage(self), 'Text manage')
         tabwidget.addTab(User(), 'User management')
         tabwidget.addTab(startracer, 'Start game')
@@ -207,7 +249,7 @@ class Main(QWidget):
         self.setLayout(self.lay)
         self.show()
         self.socket = socket()
-        self.socket.bind(('0.0.0.0', 9090))
+        self.socket.bind((get_current_ip(), 9090))
         self.socket.listen(5)
         Thread(target=self.acceptclients).start()
         Thread(target=self.activeusers).start()
@@ -389,6 +431,7 @@ class Main(QWidget):
         os._exit(1)
 
 if __name__ == '__main__':
+    Thread(target=broadcast).start()
     app = QApplication(sys.argv)
     ex = Main()
     ex.show()
