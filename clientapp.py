@@ -261,6 +261,7 @@ class Main(QWidget):
     def closeEvent(self, event):
         os._exit(1)
 
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = Main()
