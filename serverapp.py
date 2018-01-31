@@ -12,6 +12,7 @@ import database
 import hashlib
 from random import randint
 import copy
+from PyQt5.QtCore import QMetaType
 
 
 def clearLayout(layout):
@@ -261,9 +262,9 @@ class Main(QWidget):
         self.sendstop()
 
     def reftext(self):
-        while True:
-            time.sleep(9)
-            self.refreshfiles()
+        # while True:
+        #     time.sleep(9)
+        self.refreshfiles()
 
     def statistic(self):
         while True:
